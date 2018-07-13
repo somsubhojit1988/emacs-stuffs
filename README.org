@@ -1,0 +1,16 @@
+#+STARTUP: showall hidestars
+
+* Emacs learning log
+** Lesson 1 07/13
+  - create init.el and inhibit the startup message
+  - add melpa to package-archives
+  - installed use-package
+  - installed try using use-package
+  - installed which-key using use-package
+
+** Lesson 2 7/13
+   - learnt some basic note taking and outlining with org mode
+   - creating this org file( planning to host this up on github)
+   - will instlall org-bullets and add the basic config to it
+   - added start up instruction to this file to expand all bullets at startup
+
