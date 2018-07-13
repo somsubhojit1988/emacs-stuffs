@@ -14,3 +14,13 @@
    - will instlall org-bullets and add the basic config to it
    - added start up instruction to this file to expand all bullets at startup
 
+** Lesson 3 7/13
+   - Some basic elisp stuffs like (+ a b)
+   - removed toolbar from startup
+** Lesson 4 7/13
+   - Some basic ido-mode setup
+     - enable flexible matching (ido-enable-flex-matching)
+     - enable ido every where (ido-everywhere)
+     - enable ibuffer to get a fancy list of buffers upon which we can work. alternatives: ibuffer/ibuffer-other-window
+     - nice little package called tabbar creates tab-bars for the buffers
+       [ I think I will use this for a while now]
