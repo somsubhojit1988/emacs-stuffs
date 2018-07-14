@@ -7,13 +7,11 @@
   - installed use-package
   - installed try using use-package
   - installed which-key using use-package
-
 ** Lesson 2 7/13
    - learnt some basic note taking and outlining with org mode
    - creating this org file( planning to host this up on github)
    - will instlall org-bullets and add the basic config to it
    - added start up instruction to this file to expand all bullets at startup
-
 ** Lesson 3 7/13
    - Some basic elisp stuffs like (+ a b)
    - removed toolbar from startup
@@ -24,3 +22,11 @@
      - enable ibuffer to get a fancy list of buffers upon which we can work. alternatives: ibuffer/ibuffer-other-window
      - nice little package called tabbar creates tab-bars for the buffers
        [ I think I will use this for a while now]
+** Lesson 5 7/13
+   - Some basic window management stuffs
+   - installed package ace-window. it labels each window with a type font so that switching to a specific window becomes easier.
+
+** Lesson 6 7/13
+   - Alt+x, describe-package, gives a desription of the package within emacs
+   - Will be installing swiper
+   - Added emacs-bash-completion [cannot see any difference, will keep it for a while, before removing it]
