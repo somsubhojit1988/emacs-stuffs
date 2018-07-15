@@ -8,9 +8,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
+ '(custom-enabled-themes (quote (spacemacs-dark)))
+ '(custom-safe-themes
+   (quote
+    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(package-selected-packages
    (quote
-    (counsel ace-window tabbar tab-bar which-key use-package try org-bullets))))
+    (spacemacs-theme counsel ace-window tab-bar which-key use-package try org-bullets))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -39,7 +45,13 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-;;;; A package that helps to try a package without actually installing it
+;;;; Spacemacs theme download and load-theme
+(use-package spacemacs-common
+    :ensure spacemacs-theme
+    :config (load-theme 'spacemacs-light t))
+
+;;;; A package that helps to try a package without actually installing
+;;;; it
 (use-package try
   :ensure t)
 
@@ -53,6 +65,11 @@
   :ensure t
   :config
   (add-hook 'org-mode-hook 'org-bullets-mode))
+;;; syntax higlighting in orgmode code blocks like their native mode
+(setq org-src-fontify-natively t
+    org-src-tab-acts-natively t
+    org-confirm-babel-evaluate nil
+    org-edit-src-content-indentation 0)
 
 ;;;; Help with the list of buffers when trying to switch
 ;;; flexible matching is fancy it gives the options without
@@ -68,12 +85,13 @@
 ;;; alternatively
 ;; (defalias 'list-buffers 'ibuffer-other-window)
 
+;;;; REMOVING THIS
 ;;;; tabbar: nice little package that opens tabs
 ;;; will be using it for a while now
-(use-package tabbar
-  :ensure t
-  :config
-  (tabbar-mode 1))
+;; (use-package tabbar
+;;   :ensure t
+;;   :config
+;;   (tabbar-mode 1))
 
 ;;;; installing ace-window package, it helps
 ;;; switching between multiple (> 2) opened windows
@@ -122,8 +140,9 @@
 
 
 ;;;; Want bash completion on eshell
-;;;  will be using this : emacs-bash-completion [https://github.com/szermatt/emacs-bash-completion]
-;;;  adding the path to emacs-bash-completion to load path
+;;;  will be using this : emacs-bash-completion
+;;;  [https://github.com/szermatt/emacs-bash-completion] adding the
+;;;  path to emacs-bash-completion to load path
 (add-to-list 'load-path "/home/susom/.emacs.d/emacs-bash-completion/")
 ;;; as per the github page -
 (autoload 'bash-completion-dynamic-complete 
@@ -132,4 +151,6 @@
 (add-hook 'shell-dynamic-complete-functions
 	  'bash-completion-dynamic-complete)
 
-
+;;;; Auto fill comments only as suggested here -
+;;;; https://www.emacswiki.org/emacs/FillingComments
+(setq comment-auto-fill-only-comments t)

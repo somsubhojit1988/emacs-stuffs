@@ -1,4 +1,7 @@
+#+TITLE: Emacs leraning tracker
 #+STARTUP: showall hidestars
+#+author: Subhojit Som
+#+email: susom@iu.edu
 
 * Emacs learning log
 ** Lesson 1 07/13
@@ -11,7 +14,8 @@
    - learnt some basic note taking and outlining with org mode
    - creating this org file( planning to host this up on github)
    - will instlall org-bullets and add the basic config to it
-   - added start up instruction to this file to expand all bullets at startup
+   - added start up instruction to this file to expand all bullets at
+     startup
 ** Lesson 3 7/13
    - Some basic elisp stuffs like (+ a b)
    - removed toolbar from startup
@@ -19,14 +23,26 @@
    - Some basic ido-mode setup
      - enable flexible matching (ido-enable-flex-matching)
      - enable ido every where (ido-everywhere)
-     - enable ibuffer to get a fancy list of buffers upon which we can work. alternatives: ibuffer/ibuffer-other-window
+     - enable ibuffer to get a fancy list of buffers upon which we can
+       work. alternatives: ibuffer/ibuffer-other-window
      - nice little package called tabbar creates tab-bars for the buffers
        [ I think I will use this for a while now]
 ** Lesson 5 7/13
    - Some basic window management stuffs
-   - installed package ace-window. it labels each window with a type font so that switching to a specific window becomes easier.
+   - installed package ace-window. it labels each window with a type
+     font so that switching to a specific window becomes easier.
 
 ** Lesson 6 7/13
-   - Alt+x, describe-package, gives a desription of the package within emacs
+   - Alt+x, describe-package, gives a desription of the package within
+     emacs
    - Will be installing swiper
-   - Added emacs-bash-completion [cannot see any difference, will keep it for a while, before removing it]
+   - Added emacs-bash-completion [cannot see any difference, will keep
+     it for a while, before removing it]
+** Lesson 7 7/14
+   - Org mode bulleting
+   - create tables, links
+   - write code blocks, [modified init.el] to add init code, that does
+     syntax highlighting for code blocks in org mode as in the
+     language's native mode.
+
+
