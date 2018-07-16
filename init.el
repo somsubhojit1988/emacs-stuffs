@@ -116,28 +116,30 @@
 
 (use-package swiper
   :ensure try
+  :bind (("C-s" . swiper)
+	("C-r" . swiper)
+	("C-c C-r" . ivy-resume)
+	("M-x" . counsel-M-x)
+	("C-x C-f" . counsel-find-file)
+	("C-c g" . counsel-git)
+	("C-c j" . counsel-git-grep)
+	("C-c k" . counsel-ag)
+	("C-x l" . counsel-locate)
+	("C-S-o" . counsel-rhythmbox))
   :config
   (progn
     (ivy-mode 1)
     (setq ivy-use-virtual-buffers t)
     (setq enable-recursive-minibuffers t)
-    (global-set-key "\C-s" 'swiper)
-    (global-set-key (kbd "C-c C-r") 'ivy-resume)
-    (global-set-key (kbd "<f6>") 'ivy-resume)
-    (global-set-key (kbd "M-x") 'counsel-M-x)
-    (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-    (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-    (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-    (global-set-key (kbd "<f1> l") 'counsel-find-library)
-    (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-    (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-    (global-set-key (kbd "C-c g") 'counsel-git)
-    (global-set-key (kbd "C-c j") 'counsel-git-grep)
-    (global-set-key (kbd "C-c k") 'counsel-ag)
-    (global-set-key (kbd "C-x l") 'counsel-locate)
-    (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+    (setq ivy-display-style 'fancy)
+    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
     (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
     ))
+    ;; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+    ;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+    ;; (global-set-key (kbd "<f1> l") 'counsel-find-library)
+    ;; (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+    ;; (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 
 
 ;;;; Want bash completion on eshell
@@ -194,7 +196,7 @@
 
 ; get mail
 (setq mu4e-get-mail-command "mbsync -c ~/.emacs.d/.mbsyncrc gmail"
-      mu4e-html2text-command "w3m -T text/html"
+      mu4e-html2text-command "html2text -utf8 -width 72"
       mu4e-update-interval 120
       mu4e-headers-auto-update t
       mu4e-compose-signature-auto-include nil)
@@ -236,7 +238,7 @@
       user-full-name  "Subhojit Som")
 
 ;; don't save message to Sent Messages, IMAP takes care of this
-; (setq mu4e-sent-messages-behavior 'delete)
+(setq mu4e-sent-messages-behavior 'delete)
 
 ;; Some org-mode in mail related stuffs
 (require 'org-mu4e)
@@ -321,3 +323,11 @@
 (add-hook 'message-mode-hook 'turn-on-orgtbl)
 (require 'org-bullets)
 (add-hook 'orgstruct-mode-hook (lambda() (org-bullets-mode 1)))
+
+;; End of email setup
+
+;;;; Avy comes highly recommended [Navigation by char/words ... lots
+;;;; of other stuffs]
+(use-package avy
+  :ensure t
+  :bind ("M-s" . avy-goto-char))

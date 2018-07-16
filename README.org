@@ -44,5 +44,12 @@
    - write code blocks, [modified init.el] to add init code, that does
      syntax highlighting for code blocks in org mode as in the
      language's native mode.
-
-
+** Lesson 8 7/15
+ - Learnt about avy, a nice little package for navigation. Have it
+   addded on config, need to explore further
+ - Have spent the entire day setting up mu4e with mbsync. Lots of
+   stuff added to emacs config related to mail setup
+*** TODO Yet to explore m4ue context to manage multiple mails. 
+    Will stick to single accounts for a while and get used to before exploring this
+     
+     
