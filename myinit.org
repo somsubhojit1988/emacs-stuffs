@@ -1,0 +1,191 @@
+#+TITLE: My modularized org init
+#+author: Subhojit Som
+#+email: som.subhojit1988@gmail.com
+
+* interface tweaks
+#+BEGIN_SRC emacs-lisp
+;;;; 1st thing => turn off startup message
+(setq inhibit-startup-message t)
+;;; acquire that little real-estate space
+;;; from tool-bar
+(tool-bar-mode -1)
+;; No need to type in the whole of "yes"
+(fset 'yes-or-no-p 'y-or-n-p)
+;; Press F5 to reload buffer
+(global-set-key (kbd "<f5>") 'revert-buffer)
+#+END_SRC
+* try
+  awesome package for trying out a package without actually installing it
+#+BEGIN_SRC emacs-lisp
+(use-package try
+  :ensure t)
+#+END_SRC
+* which key 
+  bring up help about the key we are trying to enter in
+#+BEGIN_SRC emacs-lisp
+;;;; Key binding helper package
+(use-package which-key
+  :ensure t
+  :config (which-key-mode))
+#+END_SRC
+  
+* Ohh that Spacemacs theme
+#+BEGIN_SRC emacs-lisp
+;;;; Spacemacs theme download and load-theme
+(use-package spacemacs-common
+  :ensure spacemacs-theme
+  :config (load-theme 'spacemacs-dark t))
+#+END_SRC
+
+* Some org stuffs
+  #+BEGIN_SRC emacs-lisp
+
+;;;; Org-mode stuffs
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook 'org-bullets-mode))
+
+;;; syntax higlighting in orgmode code blocks like their native mode
+(setq org-src-fontify-natively t
+      org-src-tab-acts-natively t
+      org-confirm-babel-evaluate nil
+      org-edit-src-content-indentation 0)
+
+
+  #+END_SRC
+* ido
+#+BEGIN_SRC  emacs-lisp
+;;;; Help with the list of buffers when trying to switch
+;;; flexible matching is fancy it gives the options without
+;;; actually typing the whole thing
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+#+END_SRC
+* ibuffer
+#+BEGIN_SRC emacs-lisp
+;;;; Open up a different interface (in another window)
+;;; to show the buffers we have opened - use ibuffer/
+;;; ibuffer-other-window
+(defalias 'list-buffers 'ibuffer)
+;;; alternatively
+;; (defalias 'list-buffers 'ibuffer-other-window)
+#+END_SRC
+
+* ace-window
+  Switching between windows made easy by labelling them with numbers
+#+BEGIN_SRC emacs-lisp
+;;;; installing ace-window package, it helps
+;;; switching between multiple (> 2) opened windows
+;;; by assigning a number to each
+(use-package ace-window
+  :ensure t
+  :init
+  (progn
+    (global-set-key [remap other-window] 'ace-window)
+    (custom-set-faces
+     '(aw-leading-char-face
+       ((t (:inherit ace-jump-face-foreground :height 3.0))))) 
+    ))
+#+END_SRC
+
+* swiper 
+  Very convennient navigation/search regex based
+#+BEGIN_SRC emacs-lisp
+;;;; swiper
+;;; dependency => cunsel
+(use-package counsel
+  :ensure t
+  )
+
+(use-package swiper
+  :ensure try
+  :bind (("C-s" . swiper)
+         ("C-r" . swiper)
+         ("C-c C-r" . ivy-resume)
+         ("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)
+         ("C-c g" . counsel-git)
+         ("C-c j" . counsel-git-grep)
+         ("C-c k" . counsel-ag)
+         ("C-x l" . counsel-locate)
+         ("C-S-o" . counsel-rhythmbox))
+  :config
+  (progn
+    (ivy-mode 1)
+    (setq ivy-use-virtual-buffers t)
+    (setq enable-recursive-minibuffers t)
+    (setq ivy-display-style 'fancy)
+    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+    (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+    ))
+;; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+;; (global-set-key (kbd "<f1> l") 'counsel-find-library)
+;; (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+;; (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+#+END_SRC
+* bash-completion
+  
+  * Wanted bash completion to work on eshell but haven't got this working so far
+    TODO: need to investigate eshell
+#+BEGIN_SRC emacs-lisp
+
+;;;; Want bash completion on eshell
+;;;  will be using this : emacs-bash-completion
+;;;  [https://github.com/szermatt/emacs-bash-completion] adding the
+;;;  path to emacs-bash-completion to load path
+(add-to-list 'load-path "/home/susom/.emacs.d/emacs-bash-completion/")
+;;; as per the github page -
+(autoload 'bash-completion-dynamic-complete 
+  "bash-completion"
+  "BASH completion hook")
+(add-hook 'shell-dynamic-complete-functions
+          'bash-completion-dynamic-complete)
+
+#+END_SRC
+
+* auto-fill comment blocks in code
+#+BEGIN_SRC emacs-lisp
+;;;; Auto fill comments only as suggested here -
+;;;; https://www.emacswiki.org/emacs/FillingComments
+(setq comment-auto-fill-only-comments t)
+#+END_SRC
+
+* avy 
+  Charecter based navigation haven't quite explored this yet
+#+BEGIN_SRC emacs-lisp
+;;;; Avy comes highly recommended [Navigation by char/words ... lots
+;;;; of other stuffs]
+(use-package avy
+  :ensure t
+  :bind ("M-s" . avy-goto-char))
+
+#+END_SRC
+* Window management
+  resotre window layout=> C-x r w <register> to store a window
+  configuration in a register, and C-x r j <register> (where
+  <register> is a single character) to jump back to it.
+#+BEGIN_SRC emacs-lisp
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; WINDOW MANAGEMENT: 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; Winner mode to the rescue “undo” (and “redo”) changes in the
+;;; window configuration with the key commands ‘C-c left’ and ‘C-c
+;;; right’
+(when (fboundp 'winner-mode)
+  (winner-mode 1))
+#+END_SRC
+* Auto complete
+#+BEGIN_SRC emacs-lisp
+;;;; Auto complete, just what was missing
+(use-package auto-complete
+  :ensure t
+  :init
+  (progn
+    (ac-config-default)
+    (global-auto-complete-mode t)
+    ))
+#+END_SRC

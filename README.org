@@ -1,5 +1,4 @@
 #+TITLE: Emacs leraning tracker
-#+STARTUP: showall hidestars
 #+author: Subhojit Som
 #+email: susom@iu.edu
 
@@ -31,7 +30,6 @@
    - Some basic window management stuffs
    - installed package ace-window. it labels each window with a type
      font so that switching to a specific window becomes easier.
-
 ** Lesson 6 7/13
    - Alt+x, describe-package, gives a desription of the package within
      emacs
@@ -51,5 +49,12 @@
    stuff added to emacs config related to mail setup
 *** TODO Yet to explore m4ue context to manage multiple mails. 
     Will stick to single accounts for a while and get used to before exploring this
-     
-     
+** Lesson 9 7/20
+   Learnt some stuffs this week haven't quite updated this README
+   religiously
+   + Added some themes
+   + Learnt about avy haven't quite explored it yet
+   + Modularized the init file to Org modules
+   + auto-complete is installed and am liking it so far
+
+
