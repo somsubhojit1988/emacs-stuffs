@@ -16,7 +16,8 @@
   (package-install 'use-package))
 
 (org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org"))
-(org-babel-load-file (expand-file-name "~/.emacs.d/email-setup.org"))
+;;; Leaving this monstrosity for now
+;;(org-babel-load-file (expand-file-name "~/.emacs.d/email-setup.org"))
 
 ;;;; REMOVING THIS
 ;;;; tabbar: nice little package that opens tabs
